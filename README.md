@@ -2,6 +2,13 @@
 
 
 
+### Config 
+
+```BASH 
+cd agar
+npm i
+```
+
 ### Front 
 
 ```BASH 
