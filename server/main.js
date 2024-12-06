@@ -63,16 +63,29 @@ function checkCollisionFood(player) {
 
 }
 
-console.log(players)
+function checkCollisionPlayer(player) {
+    if(players.size > 1 ){
+        players.forEach((p) => {
+            const dx = player.x - p.x;
+            const dy = player.y - p.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            console.log();
+        
+            if (distance < player.radius && p.radius < player.radius) {
+                players.delete(p);
+                player.radius += 40;
+                io.emit('playerEaten', p.id);
+            }
+        });
+    }
+}
 
 // Update game state
 function updateGame() {
-    console.log(food.size)
-    
     if (food.size < FOOD_COUNT_MAX){
-        addFood(6)
+        addFood(100)
     }
-    
     players.forEach((player) => {
         if (player.isMoving) {
             player.x += player.direction.x * MOVEMENT_SPEED;
@@ -82,6 +95,7 @@ function updateGame() {
             player.y = Math.max(0, Math.min( WORLD_SIZE, player.y));
 
             checkCollisionFood(player);
+            //checkCollisionPlayer(player);
         }
     });
 
@@ -93,6 +107,7 @@ function updateGame() {
 
 io.on('connection', (socket) => {
     console.log('Player connected:', socket.id);
+
     // Create new player
     const position = generateRandomPosition( WORLD_SIZE);
 

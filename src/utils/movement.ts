@@ -19,6 +19,7 @@ export function getQuadrantDirection(mouseX: number, mouseY: number, canvasSizeX
     } else {
         direction.y = 1; 
     }
+    
     const magnitude = Math.sqrt(direction.x * direction.x + direction.y * direction.y);
 
     return {

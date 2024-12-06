@@ -63,10 +63,10 @@ const GameCanvas = () => {
             ctx.fill();
 
             if (p.isMoving) {
-            ctx.beginPath();
-            ctx.strokeStyle = p.color;
-            ctx.moveTo(p.x + offsetX, p.y + offsetY);
-            ctx.stroke();
+                ctx.beginPath();
+                ctx.strokeStyle = p.color;
+                ctx.moveTo(p.x + offsetX, p.y + offsetY);
+                ctx.stroke();
             }
         });
     }, [players, food, playerId]);
@@ -95,7 +95,7 @@ const GameCanvas = () => {
             height={CANVAS_SIZE_Y}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
-            className="border "
+            className="border"
         />
     );
 }

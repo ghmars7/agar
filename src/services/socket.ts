@@ -29,6 +29,10 @@ class SocketService {
         this.socket.on('foodEaten', (id: string) => {
             useGameStore.getState().removeFood(id);
         });
+
+        this.socket.on('playerEaten', (id: string) => {
+            useGameStore.getState().removePlayer(id);
+        });
     }
 
     updateDirection(direction: Vector, isMoving: boolean) {
